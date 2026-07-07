@@ -1,4 +1,10 @@
 #!/usr/bin/make -f
-
 %:
 	dh $@
+
+# extra (duplicated) LICENSE file triggers lintian error.
+execute_after_dh_auto_install:
+	find debian -type f -name LICENSE -print -delete
+
+override_dh_auto_test:
+	:
